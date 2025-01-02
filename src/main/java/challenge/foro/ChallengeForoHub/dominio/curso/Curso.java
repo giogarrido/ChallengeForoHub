@@ -24,6 +24,7 @@ public class Curso {
     private String nombre;
 
     private String categoria;
+
 }
 
 

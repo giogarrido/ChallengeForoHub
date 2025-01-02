@@ -1,18 +1,13 @@
 package challenge.foro.ChallengeForoHub.dominio.usuario;
 
 import challenge.foro.ChallengeForoHub.dominio.perfil.Perfil;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Entity
+@Entity(name= "Usuario")
 @Table(name = "usuarios")
 @Getter
 @NoArgsConstructor
@@ -29,8 +24,13 @@ public class Usuario {
 
     private String contrasena;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "perfil_id")
     private Perfil perfil;
+
+    public Long getId() {
+        return id;
+    }
 }
 
 
