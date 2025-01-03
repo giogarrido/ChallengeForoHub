@@ -1,13 +1,12 @@
 package challenge.foro.ChallengeForoHub.dominio.topico;
 
-import challenge.foro.ChallengeForoHub.dominio.ValidadacionException;
+import challenge.foro.ChallengeForoHub.dominio.ValidacionException;
 import challenge.foro.ChallengeForoHub.dominio.curso.CursoRepository;
 import challenge.foro.ChallengeForoHub.dominio.topico.validaciones.ValidacionDeTopico;
 import challenge.foro.ChallengeForoHub.dominio.usuario.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -22,22 +21,22 @@ public class RegistroTopico {
     @Autowired
     private CursoRepository cursoRepository;
 
-//    @Autowired
-//    private List<ValidacionDeTopico> validaciones;
+    @Autowired
+    private List<ValidacionDeTopico> validaciones;
 
 
     public DatosDetalleTopico registrar(DatosRegistroTopico datos) {
 
         if(!usuarioRepository.existsById(datos.autorId())){
-            throw new ValidadacionException("No existe un usuario con el id introducido");
+            throw new ValidacionException("No existe un usuario con el id introducido");
         }
 
         if(!cursoRepository.existsById(datos.cursoId())){
-            throw new ValidadacionException("No existe un curso con el id introducido");
+            throw new ValidacionException("No existe un curso con el id introducido");
         }
 
         //validaciones
-//        validaciones.forEach(validacion -> validacion.validar(datos));
+        validaciones.forEach(validacion -> validacion.validar(datos));
 
         var usuario = usuarioRepository.findById(datos.autorId()).get();
 

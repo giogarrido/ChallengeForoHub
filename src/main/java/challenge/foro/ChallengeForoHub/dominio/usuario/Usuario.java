@@ -28,9 +28,6 @@ public class Usuario {
     @JoinColumn(name = "perfil_id")
     private Perfil perfil;
 
-    public Long getId() {
-        return id;
-    }
 }
 
 
